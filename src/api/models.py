@@ -17,3 +17,31 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+
+
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    last_name = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<Person {self.email}>'
+
+    def serialize(self):
+        return {
+            "id": self.id
+            # do not serialize the password, its a security breach
+        }
+
+class Animal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<Animal {self.email}>'
+
+    def serialize(self):
+        return {
+            "id": self.id
+            # do not serialize the password, its a security breach
+        }
