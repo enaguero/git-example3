@@ -29,7 +29,19 @@ class Person(db.Model):
 
     def serialize(self):
         return {
-            "id": self.id,
-            "email": self.email,
+            "id": self.id
+            # do not serialize the password, its a security breach
+        }
+
+class Animal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<Animal {self.email}>'
+
+    def serialize(self):
+        return {
+            "id": self.id
             # do not serialize the password, its a security breach
         }
